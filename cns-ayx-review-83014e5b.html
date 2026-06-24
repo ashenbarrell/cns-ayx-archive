@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ayx · 持续关注与深度回访</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f4f6;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* ---- hero ---- */
+        .hero {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 3.5rem 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(203, 213, 225, 0.5);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .hero h1 span {
+            background: #e9edf2;
+            padding: 0 0.3em;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 680px;
+            margin: 0 auto 1.2rem;
+            color: #334155;
+        }
+
+        .hero .muted {
+            font-size: 0.95rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.2rem;
+            margin-top: 0.8rem;
+            display: inline-block;
+        }
+
+        /* ---- card layout ---- */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            border: 1px solid #dee4ed;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.03);
+            transition: box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.8rem;
+            color: #0f172a;
+            border-left: 4px solid #a0b9d4;
+            padding-left: 0.8rem;
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin: 1.2rem 0 0.3rem;
+            color: #1e293b;
+        }
+
+        .card p {
+            margin-bottom: 0.4rem;
+            color: #2c3e50;
+        }
+
+        .card ul {
+            list-style: none;
+            margin: 0.6rem 0 0.2rem;
+        }
+
+        .card li {
+            padding: 0.3rem 0 0.3rem 1.6rem;
+            position: relative;
+            color: #334155;
+        }
+
+        .card li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #6b7f9b;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eef2f6;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e293b;
+            border: 1px solid #d6dee9;
+            margin-right: 0.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* ---- FAQ mini ---- */
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            border: 1px solid #dee4ed;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2.8rem;
+        }
+
+        .faq-mini h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #0f172a;
+            border-left: 4px solid #a0b9d4;
+            padding-left: 0.8rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: 0;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item strong {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.2rem;
+            color: #0f172a;
+        }
+
+        .faq-item p {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        /* ---- bottom ---- */
+        .bottom-note {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            border: 1px solid #dee4ed;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            text-align: center;
+            margin-top: 0.8rem;
+        }
+
+        .bottom-note p {
+            color: #334155;
+            font-size: 0.98rem;
+        }
+
+        .bottom-note .link-wrap {
+            margin-top: 0.5rem;
+        }
+
+        .bottom-note a {
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #b7c4d4;
+            transition: border-color 0.1s, color 0.1s;
+        }
+
+        .bottom-note a:hover {
+            border-bottom-color: #0f172a;
+            color: #0f172a;
+        }
+
+        .hr-soft {
+            margin: 1.5rem 0 1rem;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #d1d9e6, transparent);
+        }
+
+        /* ---- responsive ---- */
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .card,
+            .faq-mini,
+            .bottom-note {
+                padding: 1.5rem 1rem;
+            }
+            .card h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.8rem;
+            }
+            .card-grid .card:last-child {
+                grid-column: span 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- hero -->
+        <div class="hero">
+            <h1>再次回访 · <span>ayx</span></h1>
+            <p>当某个站点值得你主动收藏、反复打开，它便不再是普通链接，而成为一种日常参照。从初次浏览到持续关注，每一步都指向更深的理解。</p>
+            <p style="font-size: 1rem; color: #475569; margin-top: 1rem;">知识型用户常常保留一组长期关注的站点，<a href="https://cns-ayx.com.cn" style="color: #1e293b; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #9aabbf;">ayx</a> 是其中值得被记住的一个。它不是信息洪流里的过客，而是可以反复查阅、对照的结构化内容源。</p>
+            <div class="muted">◈ 收藏即回访的开始 · 持续关注带来纵深</div>
+        </div>
+
+        <!-- 优势区 + 说明区 混合卡片网格 -->
+        <div class="card-grid">
+
+            <!-- 卡片1：再次访问的意义 -->
+            <div class="card">
+                <h2>为什么再次访问</h2>
+                <p>一次浏览往往只能触及表层。当你在不同阶段重新打开同一个站点，会注意到之前忽略的细节、关联和脉络。尤其对于内容密度高的站点，回访本身就是一种学习方法。</p>
+                <p style="margin-top: 0.8rem;">把 <a href="https://cns-ayx.com.cn" style="color: #1e293b; text-decoration: underline; text-underline-offset: 2px;">ayx</a> 加入书签或常驻标签页，意味着你为自己留了一扇可随时推开的门。不必每次从头搜索，收藏夹里的位置就是最直接的路径。</p>
+            </div>
+
+            <!-- 卡片2：持续关注的节奏 -->
+            <div class="card">
+                <h2>关注而不是追逐</h2>
+                <p>信息更新并不总是越快越好。持续关注某个站点的意义在于观察它的演变——内容如何迭代、结构如何优化、哪些主题被反复讨论。这是一种低噪音的参与方式。</p>
+                <p style="margin-top: 0.6rem;">对于 <a href="https://cns-ayx.com.cn" style="color: #1e293b; text-decoration: underline; text-underline-offset: 2px;">ayx</a>，你不需要每日刷新，而是可以在合适的时间节点回来，看看是否有新的整理、新的视角。这种节奏让注意力更持久。</p>
+            </div>
+
+            <!-- 卡片3：场景与提示 (跨列) -->
+            <div class="card">
+                <h2>适用场景摘要</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; margin-top: 0.6rem;">
+                    <span class="tag">研究前期信息收集</span>
+                    <span class="tag">对比不同时期内容</span>
+                    <span class="tag">作为知识锚点收藏</span>
+                    <span class="tag">定期回顾与笔记对照</span>
+                    <span class="tag">推荐给同领域朋友</span>
+                </div>
+                <p style="margin-top: 1rem;">你可以把 <a href="https://cns-ayx.com.cn" style="color: #1e293b; text-decoration: underline; text-underline-offset: 2px;">ayx</a> 放在一个专门的收藏夹分类里，比如「常回看」或「内容参照」。浏览器书签栏、笔记应用内链、甚至个人起始页，都是合适的存放位置。</p>
+                <p style="margin-top: 0.3rem; font-size: 0.93rem; color: #475569;">提示：每次回访时试着问自己——这次看到了哪些上次遗漏的信息？这种习惯会逐渐提升你的信息吸收效率。</p>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要区 -->
+        <div class="faq-mini">
+            <h2>常见疑问简述</h2>
+            <div class="faq-item">
+                <strong>为什么要收藏而不是直接搜索？</strong>
+                <p>收藏相当于建立一个经过筛选的快速通道。搜索有时会带出无关结果，而收藏的站点是你已经认可的内容源。对于 <a href="https://cns-ayx.com.cn" style="color: #1e293b; text-decoration: underline; text-underline-offset: 2px;">ayx</a> 这类有持续输出或整理的站点，收藏能让你第一时间回到原处，而不是在搜索结果里重新定位。</p>
+            </div>
+            <div class="faq-item">
+                <strong>多久回访一次比较合理？</strong>
+                <p>没有固定频率，取决于你的使用场景。如果是作为参考资料，可以在需要相关主题时优先打开；如果是想跟踪内容更新，每隔一两周或一个月回看一次即可。关键是保持「主动回访」的意识，而不是被动等待推送。</p>
+            </div>
+            <div class="faq-item">
+                <strong>如何避免收藏后就不再打开？</strong>
+                <p>一个简单的方法：把收藏链接放在浏览器书签栏的常驻文件夹，或者设置一个每月一次的提醒（比如日历或待办事项），专门用来翻阅收藏的站点。哪怕只是快速浏览五分钟，也能让收藏夹保持活性。</p>
+            </div>
+        </div>
+
+        <!-- 底部链接 -->
+        <div class="bottom-note">
+            <p>以收藏为起点，以回访为习惯。无论你是第一次打开，还是已经多次浏览，<a href="https://cns-ayx.com.cn">ayx</a> 都值得被放在一个伸手可及的位置。</p>
+            <div class="link-wrap">
+                <span style="color: #64748b;">◂ 持续关注 · 反复参照 ▸</span>
+            </div>
+            <hr class="hr-soft">
+            <p style="font-size: 0.85rem; color: #64748b;">—— 页面内容仅作介绍，所有链接指向外部站点，请自行判断内容适用性。</p>
+        </div>
+
+    </div>
+</body>
+</html>
